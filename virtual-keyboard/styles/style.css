@@ -55,6 +55,15 @@ body {
   margin-bottom: 10px;
   border-radius: 3px;
   cursor: pointer;
+  transition: all .3s;
+}
+
+.keyboard__key:hover {
+  background-color: #5a05ca;
+  color: #fff;
+  -webkit-box-shadow: 2px 1px 19px 0px rgba(90, 5, 202, 1);
+  -moz-box-shadow: 2px 1px 19px 0px rgba(90, 5, 202, 1);
+  box-shadow: 2px 1px 19px 0px rgba(90, 5, 202, 1);
 }
 
 .backspace {
@@ -78,7 +87,7 @@ body {
 }
 
 .shift {
-  width: 120px;
+  width: 140px;
 }
 
 .ctrl,
