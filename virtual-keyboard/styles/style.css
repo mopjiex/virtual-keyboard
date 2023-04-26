@@ -1,6 +1,10 @@
 
 body {
-  background-color: #000;
+  background: url("../images/background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  font-family: "Trebuchet MS", "Helvetica", sans-serif;
 }
 
 .container {
@@ -10,14 +14,21 @@ body {
 }
 
 .header {
-  font-family: "Trebuchet MS", "Helvetica", sans-serif;
   padding-top: 40px;
 }
 
 .header__title {
   color: #fff;
   font-size: 32px;
-  text-align: center;
+  text-align: right;
+  margin-bottom: 5px;
+}
+
+
+.header__text {
+  color: #fff;
+  font-size: 24px;
+  text-align: right;
 }
 
 .main {
@@ -36,12 +47,22 @@ body {
   font-size: 24px;
   padding: 10px;
   margin-bottom: 20px;
+  background-color: rgba(255,255,255,0.5);
 }
 
 .keyboard__keys-row {
   display: flex;
   gap: 10px;
 }
+
+.keyboard__keys {
+  width: 700px;
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 
 .keyboard__key {
   background-color: #202020; 
@@ -79,15 +100,15 @@ body {
 }
 
 .caps {
-  width: 90px;
+  width: 106px;
 }
 
 .enter {
-  width: 100px;
+  width: 90px;
 }
 
 .shift {
-  width: 140px;
+  width: 115px;
 }
 
 .ctrl,
@@ -97,7 +118,7 @@ body {
 }
 
 .space {
-  width: 400px;
+  width: 362px;
 }
 
 .red {
@@ -134,3 +155,5 @@ body {
   -moz-box-shadow: 2px 1px 19px 0px rgba(2, 221, 219, 1);
   box-shadow: 2px 1px 19px 0px rgba(2, 221, 219, 1);
 }
+
+
