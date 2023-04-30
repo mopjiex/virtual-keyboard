@@ -161,4 +161,13 @@ body {
   box-shadow: 2px 1px 19px 0px rgba(2, 221, 219, 1);
 }
 
+.caps_active {
+  background-color: #5a05ca;
+  color: #fff;
+  -webkit-box-shadow: 2px 1px 19px 0px rgba(90, 5, 202, 1);
+  -moz-box-shadow: 2px 1px 19px 0px rgba(90, 5, 202, 1);
+  box-shadow: 2px 1px 19px 0px rgba(90, 5, 202, 1);
+  
+}
+
 

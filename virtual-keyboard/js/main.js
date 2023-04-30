@@ -1,3 +1,27 @@
+const key = {
+    ru: {
+        keys: ['ё', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace', //13
+        'Tab', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', 'Del', //27
+        'CapsLock', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э', 'Enter', //40
+        'Shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', 'Shift', //51
+        'Ctrl', 'Win', 'Alt', ' ', 'Alt', 'Ctrl',
+        '◄','▲', '▼', '►'],
+        shift: ['Ё', '!', '"', '№', ';', '%', ':', '?', '*', '(', ')', '_', '+'],
+        unshift: ['ё', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '='],
+    },
+    en: {
+        keys: ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace', //13
+        'Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', 'Del', //26
+        'CapsLock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', "'", 'Enter', //39
+        'Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', 'Shift', //49
+        'Ctrl', 'Win', 'Alt', ' ', 'Alt', 'Ctrl', '◄','▲', '▼', '►'],
+        shift: ['`', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+'],
+        unshift: ['~','1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '='],
+    }
+}
+
+const specialKeys = ['backspace', 'tab', 'caps', 'shift', 'enter', 'alt', 'win', 'ctrl', 'del'];
+
 const createElements = () => {
     const body = document.querySelector('body');
     const header = document.createElement('header');
@@ -32,14 +56,7 @@ const createElements = () => {
     keyboardKeys.className = 'keyboard__keys';
     keyboardInner.append(keyboardKeys);
 
-    const keys = ['ё', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace', //13
-                  'Tab', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', 'Del', //27
-                  'CapsLock', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э', 'Enter', //40
-                  'Shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', 'Shift', //51
-                  'Ctrl', 'Win', 'Alt', ' ', 'Alt', 'Ctrl',
-                  '◄','▲', '▼', '►'];
-    console.log(keys.length)
-    keys.forEach((item, index) => {
+    key.ru.keys.forEach((item, index) => {
         const key = document.createElement('div');
         key.textContent = item;
         if ([0, 1].includes(index)) {
@@ -82,8 +99,6 @@ const createElements = () => {
 createElements();
 
 const capsLock = (item, keys) => {
-    const specialKeys = ['backspace', 'tab', 'caps', 'shift', 'enter', 'alt', 'win', 'ctrl', 'del'];
-    
     item.classList.toggle('caps_active');
   
     const shouldUpperCase = item.classList.contains('caps_active');
@@ -109,23 +124,10 @@ const enter = (textarea) => {
 
 const shift = (item, keys) => {
     const language = document.querySelector('.win');
-    const key = {
-        ru: {
-            shift: ['Ё', '!', '"', '№', ';', '%', ':', '?', '*', '(', ')', '_', '+'],
-            unshift: ['ё', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '='],
-        },
-        en: {
-            shift: ['`', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+'],
-            unshift: ['~','1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '='],
-        }
-       
-    }
+   
     item.addEventListener('mousedown', () => {
         keys.forEach(item => {
-            if(item.classList.contains('backspace') || item.classList.contains('tab') || 
-            item.classList.contains('caps') || item.classList.contains('shift') ||
-            item.classList.contains('enter') || item.classList.contains('alt') || 
-            item.classList.contains('win') || item.classList.contains('ctrl')) {
+            if(specialKeys.some(specialKey => item.classList.contains(specialKey))) {
                 console.log(1)
             }
             else {
@@ -160,10 +162,7 @@ const shift = (item, keys) => {
 
     item.addEventListener('mouseup', () => {
         keys.forEach(item => {
-            if(item.classList.contains('backspace') || item.classList.contains('tab') || 
-            item.classList.contains('caps') || item.classList.contains('shift') ||
-            item.classList.contains('enter') || item.classList.contains('alt') || 
-            item.classList.contains('win') || item.classList.contains('ctrl')) {
+            if(specialKeys.some(specialKey => item.classList.contains(specialKey))) {
                 console.log(1)
             }
             else {
@@ -205,18 +204,8 @@ const del = (textarea) => {
 }
 
 const switchLanguage = (item, keys) => {
-    const keysRu = ['ё', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace', //13
-                  'Tab', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', 'Del', //26
-                  'CapsLock', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э', 'Enter', //39
-                  'Shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', 'Shift', //49
-                  'Ctrl', 'Win', 'Alt', ' ', 'Alt', 'Ctrl', '◄','▲', '▼', '►'];
-
-    const keysEn = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace', //13
-                  'Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', 'Del', //26
-                  'CapsLock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', "'", 'Enter', //39
-                  'Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', 'Shift', //49
-                  'Ctrl', 'Win', 'Alt', ' ', 'Alt', 'Ctrl', '◄','▲', '▼', '►'];
-
+    const keysEn = key.en.keys;
+    const keysRu = key.ru.keys;
     item.classList.toggle('switch__language');
     if(item.classList.contains('switch__language')) {
        keys.forEach((item, index) => {
@@ -238,13 +227,9 @@ const tab = (textarea) => {
 const keyboardKey = document.querySelectorAll('.keyboard__key');
 const keyboardTextarea = document.querySelector('.keyboard__textarea');
 
-
 keyboardKey.forEach(item => {
     item.addEventListener('click', () => {
-        if(item.classList.contains('backspace') || item.classList.contains('tab') || item.classList.contains('del') || 
-           item.classList.contains('caps') || item.classList.contains('shift') ||
-           item.classList.contains('enter') || item.classList.contains('alt') || 
-           item.classList.contains('win') || item.classList.contains('ctrl')) {
+        if(specialKeys.some(specialKey => item.classList.contains(specialKey))) {
           
           if(item.classList.contains('caps')) capsLock(item, keyboardKey)
           if(item.classList.contains('backspace'))  backspace(keyboardTextarea); 
@@ -254,7 +239,6 @@ keyboardKey.forEach(item => {
           if(item.classList.contains('win')) switchLanguage(item, keyboardKey);
           if(item.classList.contains('del')) del(keyboardTextarea);
           
-
         } else {
           keyboardTextarea.value += item.textContent;
         }
