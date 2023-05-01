@@ -6,8 +6,18 @@ const key = {
         'Shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', 'Shift', //51
         'Ctrl', 'Win', 'Alt', ' ', 'Alt', 'Ctrl',
         '◄','▲', '▼', '►'],
-        shift: ['Ё', '!', '"', '№', ';', '%', ':', '?', '*', '(', ')', '_', '+'],
-        unshift: ['ё', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '='],
+        shift: ['Ё', '!', '"', '№', ';', '%', ':', '?', '*', '(', ')', '_', '+', 'Backspace', //13
+        'Tab', 'Й', 'Ц', 'У', 'К', 'Е', 'Н', 'Г', 'Ш', 'Щ', 'З', 'Х', 'Ъ', 'Del', //27
+        'CapsLock', 'Ф', 'Ы', 'В', 'А', 'П', 'Р', 'О', 'Л', 'Д', 'Ж', 'Э', 'Enter', //40
+        'Shift', 'Я', 'Ч', 'С', 'М', 'И', 'Т', 'Ь', 'Б', 'Ю', 'Shift', //51
+        'Ctrl', 'Win', 'Alt', ' ', 'Alt', 'Ctrl',
+        '◄','▲', '▼', '►'],
+        unshift: ['ё', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace', //13
+        'Tab', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', 'Del', //27
+        'CapsLock', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э', 'Enter', //40
+        'Shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', 'Shift', //51
+        'Ctrl', 'Win', 'Alt', ' ', 'Alt', 'Ctrl',
+        '◄','▲', '▼', '►'],
     },
     en: {
         keys: ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace', //13
@@ -15,12 +25,27 @@ const key = {
         'CapsLock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', "'", 'Enter', //39
         'Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', 'Shift', //49
         'Ctrl', 'Win', 'Alt', ' ', 'Alt', 'Ctrl', '◄','▲', '▼', '►'],
-        shift: ['`', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+'],
-        unshift: ['~','1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '='],
-    }
+        shift: ['~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', 'Backspace', //13
+        'Tab', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', '{', '}', 'Del', //26
+        'CapsLock', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ':', '"', 'Enter', //39
+        'Shift', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', '<', '>', 'Shift', //49
+        'Ctrl', 'Win', 'Alt', ' ', 'Alt', 'Ctrl', '◄','▲', '▼', '►'],
+        unshift: ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace', //13
+        'Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', 'Del', //26
+        'CapsLock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', "'", 'Enter', //39
+        'Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', 'Shift', //49
+        'Ctrl', 'Win', 'Alt', ' ', 'Alt', 'Ctrl', '◄','▲', '▼', '►'],
+    },
 }
 
 const specialKeys = ['backspace', 'tab', 'caps', 'shift', 'enter', 'alt', 'win', 'ctrl', 'del'];
+const code =  ['Backquote', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5', 'Digit6', 'Digit7', 'Digit8', 'Digit9', 'Digit0', 'Minus', 'Equal', 'Backspace',
+'Tab', 'KeyQ', 'KeyW', 'KeyE', 'KeyR', 'KeyT', 'KeyY', 'KeyU', 'KeyI', 'KeyO', 'KeyP', 'BracketLeft', 'BracketRight', 'Delete',
+'CapsLock', 'KeyA', 'KeyS', 'KeyD', 'KeyF', 'KeyG', 'KeyH', 'KeyJ', 'KeyK', 'KeyL', 'Semicolon', 'Quote', 'Enter',
+'ShiftLeft', 'KeyZ', 'KeyX', 'KeyC', 'KeyV', 'KeyB', 'KeyN', 'KeyM', 'Comma', 'Period', 'ShiftRight',
+'ControlLeft', 'MetaLeft', 'AltLeft', 'Space', 'AltRight', 'ControlRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown', 'ArrowRight',
+]
+
 
 const createElements = () => {
     const body = document.querySelector('body');
@@ -35,7 +60,7 @@ const createElements = () => {
     header.append(container);
     const headerText = document.createElement('p');
     headerText.className = 'header__text';
-    headerText.textContent = 'Создана в Windows';
+    headerText.innerHTML = 'Создана в Windows <br> Ctrl + Alt - смена языка';
     container.append(headerTitle, headerText);
     const main = document.createElement('main');
     main.className = 'main';
@@ -59,6 +84,7 @@ const createElements = () => {
     key.ru.keys.forEach((item, index) => {
         const key = document.createElement('div');
         key.textContent = item;
+        key.dataset['code'] = code[index];
         if ([0, 1].includes(index)) {
             key.className = 'keyboard__key red';
         }
@@ -92,20 +118,25 @@ const createElements = () => {
          if(index == 56) key.className = 'keyboard__key blue alt';
          if(index == 55) key.className = 'keyboard__key space';
          if(index == 58 || index == 59 || index == 60 || index == 61) key.className = 'keyboard__key arrow'
+
+
         keyboardKeys.append(key);
     })
 }
 
+
 createElements();
 
+
 const capsLock = (item, keys) => {
+  
     item.classList.toggle('caps_active');
   
     const shouldUpperCase = item.classList.contains('caps_active');
   
     keys.forEach(key => {
       if (specialKeys.some(specialKey => key.classList.contains(specialKey))) {
-            console.log(1); 
+            return; 
       } else if (shouldUpperCase) {
             key.textContent = key.textContent.toUpperCase();
       } else {
@@ -124,77 +155,144 @@ const enter = (textarea) => {
 
 const shift = (item, keys) => {
     const language = document.querySelector('.win');
-   
-    item.addEventListener('mousedown', () => {
-        keys.forEach(item => {
-            if(specialKeys.some(specialKey => item.classList.contains(specialKey))) {
-                console.log(1)
-            }
-            else {
-                item.classList.toggle('shift_active');
-                if(language.classList.contains('switch__language')) {
-                    if(item.classList.contains('shift_active')) {
-                        for(let i = 0; i < key.en.shift.length; i++) {
-                            keys[i].textContent = key.en.shift[i];
-                        } 
-                    } else {
-                        for(let i = 0; i < key.en.shift.length; i++) {
-                            keys[i].textContent = key.en.unshift[i];
-                        } 
-                    }
-                } else {
-                    if(item.classList.contains('shift_active')) {
-                        for(let i = 0; i < key.ru.shift.length; i++) {
-                            keys[i].textContent = key.ru.shift[i];
-                        } 
-                    } else {
-                        for(let i = 0; i < key.ru.shift.length; i++) {
-                            keys[i].textContent = key.ru.unshift[i];
-                        } 
-                    }
-                }
-                
-                
-                item.textContent = item.textContent.toUpperCase();
-            }
-        })
-    })
+    const length = key.ru.shift.length;
+    const shiftRU = key.ru.shift;
+    const unshiftRU = key.ru.unshift;
 
+    const shiftEN = key.en.shift;
+    const unshiftEN = key.en.unshift;
+  
+    item.addEventListener('mousedown', () => {
+     
+
+      for (let i = 0; i < keys.length; i++) {
+        const key = keys[i];
+  
+        if (specialKeys.some(specialKey => key.classList.contains(specialKey))) {
+          continue;
+        } else {
+          key.classList.add('shift_active');
+  
+          if (language.classList.contains('switch__language')) {
+            if (key.classList.contains('shift_active')) {
+              for (let j = 0; j < length; j++) {
+                keys[j].textContent = shiftEN[j];
+              }
+            } else {
+              for (let j = 0; j < length; j++) {
+                keys[j].textContent = unshiftEN[j];
+              }
+            }
+          } else {
+            if (key.classList.contains('shift_active')) {
+            
+              for (let j = 0; j < length; j++) {
+                keys[j].textContent = shiftRU[j];
+              }
+            } else {
+              for (let j = 0; j < length; j++) {
+                keys[j].textContent = unshiftRU[j];
+              }
+            }
+          }
+        }
+      }
+    });
+  
     item.addEventListener('mouseup', () => {
-        keys.forEach(item => {
-            if(specialKeys.some(specialKey => item.classList.contains(specialKey))) {
-                console.log(1)
+      for (let i = 0; i < keys.length; i++) {
+        const key = keys[i];
+  
+        if (specialKeys.some(specialKey => key.classList.contains(specialKey))) {
+          continue;
+        } else {
+          key.classList.remove('shift_active');
+  
+          if (language.classList.contains('switch__language')) {
+            for (let j = 0; j < length; j++) {
+              keys[j].textContent = unshiftEN[j];
             }
-            else {
-               
-                item.classList.toggle('shift_active');
-                if(language.classList.contains('switch__language')) {
-                    if(item.classList.contains('shift_active')) {
-                        for(let i = 0; i < key.en.shift.length; i++) {
-                            keys[i].textContent = key.en.shift[i];
-                        } 
-                    } else {
-                        for(let i = 0; i < key.en.shift.length; i++) {
-                            keys[i].textContent = key.en.unshift[i];
-                        } 
-                    }
-                } else {
-                    if(item.classList.contains('shift_active')) {
-                        for(let i = 0; i < key.ru.shift.length; i++) {
-                            keys[i].textContent = key.ru.shift[i];
-                        } 
-                    } else {
-                        for(let i = 0; i < key.ru.shift.length; i++) {
-                            keys[i].textContent = key.ru.unshift[i];
-                        } 
-                    }
-                }
-                item.textContent = item.textContent.toLowerCase();
+          } else {
+            for (let j = 0; j < length; j++) {
+              keys[j].textContent = unshiftRU[j];
             }
-        })
-    })
+          }
+        }
+      }
+    });
+  }
+
+const shiftUp = (keys) => {
+    const language = document.querySelector('.ctrl');
+    const length = key.ru.shift.length;
+    const shiftRU = key.ru.shift;
+    const unshiftRU = key.ru.unshift;
+
+    const shiftEN = key.en.shift;
+    const unshiftEN = key.en.unshift;
+
+   for (let i = 0; i < keys.length; i++) {
+        const key = keys[i];
+  
+        if (specialKeys.some(specialKey => key.classList.contains(specialKey))) {
+          continue;
+        } else {
+          key.classList.add('shift_active');
+  
+          if (language.classList.contains('switch__language')) {
+            if (key.classList.contains('shift_active')) {
+              for (let j = 0; j < length; j++) {
+                keys[j].textContent = shiftEN[j];
+              }
+            } else {
+              for (let j = 0; j < length; j++) {
+                keys[j].textContent = unshiftEN[j];
+              }
+            }
+          } else {
+            if (key.classList.contains('shift_active')) {
+            
+              for (let j = 0; j < length; j++) {
+                keys[j].textContent = shiftRU[j];
+              }
+            } else {
+              for (let j = 0; j < length; j++) {
+                keys[j].textContent = unshiftRU[j];
+              }
+            }
+          }
+        }
+      }
 }
 
+
+const shiftDown = (keys) => {
+    const language = document.querySelector('.ctrl');
+    const length = key.ru.shift.length;
+    
+    const unshiftRU = key.ru.unshift;
+
+    const unshiftEN = key.en.unshift;
+    for (let i = 0; i < keys.length; i++) {
+        const key = keys[i];
+  
+        if (specialKeys.some(specialKey => key.classList.contains(specialKey))) {
+          continue;
+        } else {
+          key.classList.remove('shift_active');
+  
+          if (language.classList.contains('switch__language')) {
+            for (let j = 0; j < length; j++) {
+              keys[j].textContent = unshiftEN[j];
+            }
+          } else {
+            for (let j = 0; j < length; j++) {
+              keys[j].textContent = unshiftRU[j];
+            }
+          }
+        }
+      }
+}
 const del = (textarea) => {
     const cursorPosition = textarea.selectionEnd;
     const textBeforeCursor = textarea.value.substring(0, cursorPosition);
@@ -202,6 +300,7 @@ const del = (textarea) => {
     textarea.value = textBeforeCursor + textAfterCursor;
     textarea.setSelectionRange(cursorPosition, cursorPosition);
 }
+
 
 const switchLanguage = (item, keys) => {
     const keysEn = key.en.keys;
@@ -211,8 +310,6 @@ const switchLanguage = (item, keys) => {
        keys.forEach((item, index) => {
            item.textContent = keysEn[index];
        })
-
-       
     } else {
         keys.forEach((item, index) => {
             item.textContent = keysRu[index];
@@ -244,5 +341,62 @@ keyboardKey.forEach(item => {
         }
         
     })
+})
+
+
+
+document.addEventListener('keydown', (e) => {
+    e.preventDefault();
+    const keys = document.querySelectorAll('.keyboard__key');
+    const caps = document.querySelector('.caps');
+    const ctrl = document.querySelector('.ctrl');
+    const textarea = document.querySelector('.keyboard__textarea');
+    const s = document.querySelectorAll('.shift')[0];
+
+    if(e.code) {
+        keys.forEach(item => {
+            if(e.code == item.dataset.code) {
+                item.classList.add('key_active')
+                 if(specialKeys.some(specialKey => item.classList.contains(specialKey))) {
+                    if(item.classList.contains('backspace'))  backspace(textarea); 
+                    if(item.classList.contains('enter'))  enter(textarea); 
+                    if(item.classList.contains('win')) switchLanguage(item, keys);
+                    if(item.classList.contains('del')) del(textarea);
+                    if (e.altKey && e.ctrlKey) {
+                        switchLanguage(ctrl, keys);
+                        caps.classList.remove('caps_active');
+                    } 
+                
+                    if (e.code === 'Tab') {
+                        tab(textarea);
+                      }
+                
+                    if(e.code == 'CapsLock') {
+                        capsLock(caps, keys)
+                    }
+                
+                    
+                    if(e.shiftKey) shiftUp(s, keys)
+        } else {
+          textarea.value += item.textContent;
+        }
+            } 
+            
+        })
+    }
+    
+})
+
+document.addEventListener('keyup', (e) => {
+    e.preventDefault();
+    const keys = document.querySelectorAll('.keyboard__key');
+    if(e.code) {
+        keys.forEach(item => {
+            if(e.code == item.dataset.code) item.classList.remove('key_active')
+        })
+    }
+
+    if(e.shiftKey) {shiftDown(s, keys)}
+    
 })
 
