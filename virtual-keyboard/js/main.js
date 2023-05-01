@@ -46,6 +46,12 @@ const code =  ['Backquote', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5', 'D
 'ControlLeft', 'MetaLeft', 'AltLeft', 'Space', 'AltRight', 'ControlRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown', 'ArrowRight',
 ]
 
+const length = key.ru.shift.length;
+const shiftRU = key.ru.shift;
+const unshiftRU = key.ru.unshift;
+const shiftEN = key.en.shift;
+const unshiftEN = key.en.unshift;
+
 
 const createElements = () => {
     const body = document.querySelector('body');
@@ -154,17 +160,10 @@ const enter = (textarea) => {
 }
 
 const shift = (item, keys) => {
-    const language = document.querySelector('.win');
-    const length = key.ru.shift.length;
-    const shiftRU = key.ru.shift;
-    const unshiftRU = key.ru.unshift;
-
-    const shiftEN = key.en.shift;
-    const unshiftEN = key.en.unshift;
+    const language = document.querySelector('.ctrl');
   
     item.addEventListener('mousedown', () => {
      
-
       for (let i = 0; i < keys.length; i++) {
         const key = keys[i];
   
@@ -222,23 +221,18 @@ const shift = (item, keys) => {
     });
   }
 
-const shiftUp = (keys) => {
+  const handleShiftKey = (e, keys) => {
     const language = document.querySelector('.ctrl');
-    const length = key.ru.shift.length;
-    const shiftRU = key.ru.shift;
-    const unshiftRU = key.ru.unshift;
-
-    const shiftEN = key.en.shift;
-    const unshiftEN = key.en.unshift;
-
-   for (let i = 0; i < keys.length; i++) {
+    
+    if (e.shiftKey) {
+      for (let i = 0; i < keys.length; i++) {
         const key = keys[i];
-  
+    
         if (specialKeys.some(specialKey => key.classList.contains(specialKey))) {
           continue;
         } else {
           key.classList.add('shift_active');
-  
+    
           if (language.classList.contains('switch__language')) {
             if (key.classList.contains('shift_active')) {
               for (let j = 0; j < length; j++) {
@@ -251,7 +245,6 @@ const shiftUp = (keys) => {
             }
           } else {
             if (key.classList.contains('shift_active')) {
-            
               for (let j = 0; j < length; j++) {
                 keys[j].textContent = shiftRU[j];
               }
@@ -263,24 +256,15 @@ const shiftUp = (keys) => {
           }
         }
       }
-}
-
-
-const shiftDown = (keys) => {
-    const language = document.querySelector('.ctrl');
-    const length = key.ru.shift.length;
-    
-    const unshiftRU = key.ru.unshift;
-
-    const unshiftEN = key.en.unshift;
-    for (let i = 0; i < keys.length; i++) {
+    } else {
+      for (let i = 0; i < keys.length; i++) {
         const key = keys[i];
-  
+    
         if (specialKeys.some(specialKey => key.classList.contains(specialKey))) {
           continue;
         } else {
           key.classList.remove('shift_active');
-  
+    
           if (language.classList.contains('switch__language')) {
             for (let j = 0; j < length; j++) {
               keys[j].textContent = unshiftEN[j];
@@ -292,7 +276,9 @@ const shiftDown = (keys) => {
           }
         }
       }
-}
+    }
+  };
+
 const del = (textarea) => {
     const cursorPosition = textarea.selectionEnd;
     const textBeforeCursor = textarea.value.substring(0, cursorPosition);
@@ -300,7 +286,6 @@ const del = (textarea) => {
     textarea.value = textBeforeCursor + textAfterCursor;
     textarea.setSelectionRange(cursorPosition, cursorPosition);
 }
-
 
 const switchLanguage = (item, keys) => {
     const keysEn = key.en.keys;
@@ -318,7 +303,6 @@ const switchLanguage = (item, keys) => {
         localStorage.setItem('keyboardLayout', 'ru');
     }
 }
-
 window.addEventListener('load', () => {
     const savedLayout = localStorage.getItem('keyboardLayout');
 
@@ -355,7 +339,6 @@ keyboardKey.forEach(item => {
 })
 
 
-
 document.addEventListener('keydown', (e) => {
     e.preventDefault();
     const keys = document.querySelectorAll('.keyboard__key');
@@ -371,7 +354,7 @@ document.addEventListener('keydown', (e) => {
                  if(specialKeys.some(specialKey => item.classList.contains(specialKey))) {
                     if(item.classList.contains('backspace'))  backspace(textarea); 
                     if(item.classList.contains('enter'))  enter(textarea); 
-                    if(item.classList.contains('win')) switchLanguage(item, keys);
+                    
                     if(item.classList.contains('del')) del(textarea);
                     if (e.altKey && e.ctrlKey) {
                         switchLanguage(ctrl, keys);
@@ -386,8 +369,6 @@ document.addEventListener('keydown', (e) => {
                         capsLock(caps, keys)
                     }
                 
-                    
-                    if(e.shiftKey) shiftUp(s, keys)
         } else {
           textarea.value += item.textContent;
         }
@@ -395,7 +376,10 @@ document.addEventListener('keydown', (e) => {
             
         })
     }
-    
+
+    if (e.key === 'Shift') {
+      handleShiftKey(e, keys);
+    }
 })
 
 document.addEventListener('keyup', (e) => {
@@ -407,7 +391,7 @@ document.addEventListener('keyup', (e) => {
         })
     }
 
-    if(e.shiftKey) {shiftDown(s, keys)}
-    
+    if (e.key === 'Shift') {
+        handleShiftKey(e, keys);
+      }
 })
-
