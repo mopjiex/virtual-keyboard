@@ -219,9 +219,9 @@ const shift = (item, keys) => {
         }
       }
     });
-  }
+}
 
-  const handleShiftKey = (e, keys) => {
+const handleShiftKey = (e, keys) => {
     const language = document.querySelector('.ctrl');
     
     if (e.shiftKey) {
@@ -277,7 +277,7 @@ const shift = (item, keys) => {
         }
       }
     }
-  };
+};
 
 const del = (textarea) => {
     const cursorPosition = textarea.selectionEnd;
@@ -345,7 +345,6 @@ document.addEventListener('keydown', (e) => {
     const caps = document.querySelector('.caps');
     const ctrl = document.querySelector('.ctrl');
     const textarea = document.querySelector('.keyboard__textarea');
-    const s = document.querySelectorAll('.shift')[0];
 
     if(e.code) {
         keys.forEach(item => {
