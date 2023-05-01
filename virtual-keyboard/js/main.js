@@ -310,12 +310,23 @@ const switchLanguage = (item, keys) => {
        keys.forEach((item, index) => {
            item.textContent = keysEn[index];
        })
+       localStorage.setItem('keyboardLayout', 'en');
     } else {
         keys.forEach((item, index) => {
             item.textContent = keysRu[index];
         })
+        localStorage.setItem('keyboardLayout', 'ru');
     }
 }
+
+window.addEventListener('load', () => {
+    const savedLayout = localStorage.getItem('keyboardLayout');
+
+    if (savedLayout === 'en') {
+        const winKey = document.querySelector('.win');
+        switchLanguage(winKey, keyboardKey);
+    }
+});
 
 const tab = (textarea) => {
     textarea.value += '    ';
